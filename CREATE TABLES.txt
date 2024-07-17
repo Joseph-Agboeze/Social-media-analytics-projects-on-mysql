@@ -1,0 +1,33 @@
+CREATE DATABASE socialmedia;
+USE socialmedia;
+
+-- CREATE USERS TABLE.
+CREATE TABLE Users (
+UserID INT PRIMARY KEY,
+Username VARCHAR(50),
+Email VARCHAR(100),
+JoinDate DATE
+);
+
+-- CREATE POSTS TABLE.
+CREATE TABLE Posts (
+PostID INT PRIMARY KEY,
+UserID INT,
+PostContent TEXT,
+PostDate DATETIME,
+Likes INT,
+Shares INT,
+Comments INT,
+FOREIGN KEY(UserID) REFERENCES Users(UserID)
+);
+
+-- CREATE COMMENTS TABLE.
+CREATE TABLE Comments (
+CommentID INT PRIMARY KEY,
+PostID INT,
+UserID INT,
+CommentText TEXT,
+CommentDate DATETIME,
+FOREIGN KEY(PostID) REFERENCES Posts(PostID),
+FOREIGN KEY(UserID) REFERENCES Users(UserID)
+);
